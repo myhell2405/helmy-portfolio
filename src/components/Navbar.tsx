@@ -18,8 +18,8 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-8">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#0A0A0A]/95 backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         {/* Logo */}
         <a
           href="#home"
