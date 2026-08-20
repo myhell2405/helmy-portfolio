@@ -21,7 +21,7 @@ const socials = [
   {
     name: "LinkedIn",
     handle: "Connect professionally",
-    href: "#",
+    href: "www.linkedin.com/in/myhell2405",
     accent: "#60A5FA",
     icon: (
       <svg
@@ -36,7 +36,7 @@ const socials = [
   {
     name: "Instagram",
     handle: "@hlmy.akrim",
-    href: "#",
+    href: "https://www.instagram.com/hlmy.akrim/",
     accent: "#F472B6",
     icon: (
       <svg
