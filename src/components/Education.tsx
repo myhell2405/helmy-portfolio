@@ -15,14 +15,6 @@ const education = [
   },
 ];
 
-const interests = [
-  "Information Systems",
-  "Data Analytics",
-  "Web Development",
-  "Digital Products",
-  "Technology",
-];
-
 export default function Education() {
   return (
     <section
@@ -90,6 +82,27 @@ export default function Education() {
                   {item.description}
                 </p>
 
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <div className="rounded-2xl border border-[#7C3AED]/35 bg-[#7C3AED]/10 px-5 py-3">
+                    <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#A78BFA]">
+                      GPA / IPK
+                    </p>
+                    <p className="mt-1 font-[family-name:var(--font-space-grotesk)] text-2xl font-semibold text-[#F5F5F5]">
+                      3.63 / 4.00
+                    </p>
+                  </div>
+
+                  <a
+                    href="/documents/transcript-sample.pdf"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-3 self-stretch rounded-2xl border border-[#262626] bg-[#111111] px-5 py-3 text-sm font-medium text-[#D4D4D4] transition-colors hover:border-[#7C3AED]/60 hover:text-[#C4B5FD]"
+                  >
+                    <span aria-hidden="true">↗</span>
+                    View academic transcript
+                  </a>
+                </div>
+
                 {/* Academic highlights */}
                 <div className="mt-8 flex flex-wrap gap-2">
                   {item.highlights.map((highlight) => (
@@ -104,32 +117,6 @@ export default function Education() {
               </div>
             </article>
           ))}
-        </div>
-
-        {/* Academic interests */}
-        <div className="mt-16 grid gap-8 md:mt-20 lg:grid-cols-[0.5fr_1fr]">
-          <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-[#525252]">
-              Academic Interests
-            </p>
-          </div>
-
-          <div className="flex flex-wrap gap-x-8 gap-y-4">
-            {interests.map((interest, index) => (
-              <div
-                key={interest}
-                className="flex items-center gap-3"
-              >
-                <span className="text-xs text-[#525252]">
-                  0{index + 1}
-                </span>
-
-                <span className="font-[family-name:var(--font-space-grotesk)] text-xl font-medium text-[#D4D4D4] md:text-2xl">
-                  {interest}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Bottom statement */}

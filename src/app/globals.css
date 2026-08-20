@@ -45,6 +45,7 @@ html[data-theme="light"] [class~="bg-[#111111]"] {
 html[data-theme="light"] #skills .rounded-full,
 html[data-theme="light"] #education .rounded-full,
 html[data-theme="light"] #certificates .rounded-3xl,
+html[data-theme="light"] #projects [role="dialog"] .rounded-3xl,
 html[data-theme="light"] #projects .rounded-2xl,
 html[data-theme="light"] #contact input,
 html[data-theme="light"] #contact textarea {

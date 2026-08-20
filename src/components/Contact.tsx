@@ -351,7 +351,7 @@ export default function Contact() {
                 </p>
               </div>
 
-              <h3 className="mt-5 max-w-xl font-[family-name:var(--font-space-grotesk)] text-2xl font-medium leading-tight text-[#F5F5F5] md:text-3xl">
+              <h3 className="mt-5 max-w-xl font-[family-name:var(--font-space-grotesk)] text-2xl font-medium leading-tight !text-[#F5F5F5] md:text-3xl">
                 Let&apos;s build something{" "}
                 <span className="text-[#A78BFA]">meaningful.</span>
               </h3>

@@ -1,3 +1,14 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+
+const caseStudyScreens = [
+  "/images/projects/academic-dashboard-sample.jpg",
+  "/images/projects/academic-students-sample.jpg",
+  "/images/projects/academic-reports-sample.jpg",
+];
+
 const projects = [
   {
     number: "01",
@@ -47,6 +58,8 @@ const projects = [
 ];
 
 export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
+
   return (
     <section
       id="projects"
@@ -129,9 +142,10 @@ export default function Projects() {
                 <div className="flex items-end lg:justify-end">
                   <button
                     type="button"
+                    onClick={() => setSelectedProject(project)}
                     className="group/button inline-flex items-center gap-3 text-sm font-medium text-[#D4D4D4] transition-colors duration-300 hover:text-[#A78BFA]"
                   >
-                    View Case Study
+                    Preview
 
                     <span className="transition-transform duration-300 group-hover/button:translate-x-1">
                       →
@@ -155,6 +169,39 @@ export default function Projects() {
           </span>
         </div>
       </div>
+
+      {selectedProject && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="case-study-title"
+          className="fixed inset-0 z-60 flex items-end bg-black/75 p-4 backdrop-blur-sm md:items-center md:p-8"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div
+            className="max-h-[90vh] w-full max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0D0D0D] p-6 shadow-2xl md:p-10"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA]">Case study preview</p>
+                <h3 id="case-study-title" className="mt-2 font-[family-name:var(--font-space-grotesk)] text-3xl font-semibold text-[#F5F5F5] md:text-5xl">
+                  {selectedProject.title}
+                </h3>
+              </div>
+              <button type="button" aria-label="Close case study" onClick={() => setSelectedProject(null)} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#262626] text-xl text-[#D4D4D4] transition-colors hover:border-[#7C3AED] hover:text-white">×</button>
+            </div>
+
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {caseStudyScreens.map((src, index) => (
+                <div key={src} className="overflow-hidden rounded-2xl border border-[#262626] bg-[#111111]">
+                  <Image src={src} alt={`${selectedProject.title} sample screen ${index + 1}`} width={1440} height={960} className="h-auto w-full" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

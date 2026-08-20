@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 
 type IconName =
@@ -49,6 +49,74 @@ function DockIcon({ name }: { name: IconName }) {
 export default function Navbar() {
   const [activeItem, setActiveItem] = useState("#home");
 
+  useEffect(() => {
+    const sectionItems = navItems.filter((item) => item.href.startsWith("#"));
+
+    const updateActiveItem = () => {
+      const scrollMarker = window.innerHeight * 0.45;
+      const sections = sectionItems
+        .map((item) => ({
+          href: item.href,
+          element: document.querySelector<HTMLElement>(item.href),
+        }))
+        .filter((section): section is { href: string; element: HTMLElement } => section.element !== null);
+
+      const currentSection = sections.find(({ element }) => {
+        const { top, bottom } = element.getBoundingClientRect();
+        return top <= scrollMarker && bottom >= scrollMarker;
+      });
+
+      if (currentSection) {
+        setActiveItem((current) =>
+          current === currentSection.href ? current : currentSection.href,
+        );
+        return;
+      }
+
+      const closestSection = sections.reduce<(typeof sections)[number] | null>(
+        (closest, section) => {
+          if (!closest) return section;
+
+          const sectionDistance = Math.abs(
+            section.element.getBoundingClientRect().top - scrollMarker,
+          );
+          const closestDistance = Math.abs(
+            closest.element.getBoundingClientRect().top - scrollMarker,
+          );
+
+          return sectionDistance < closestDistance ? section : closest;
+        },
+        null,
+      );
+
+      if (closestSection) {
+        setActiveItem((current) =>
+          current === closestSection.href ? current : closestSection.href,
+        );
+      }
+    };
+
+    let animationFrame: number | undefined;
+    const onScroll = () => {
+      if (animationFrame !== undefined) return;
+
+      animationFrame = window.requestAnimationFrame(() => {
+        updateActiveItem();
+        animationFrame = undefined;
+      });
+    };
+
+    updateActiveItem();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (animationFrame !== undefined) window.cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
   return (
     <motion.nav
       aria-label="Main navigation"
@@ -70,7 +138,9 @@ export default function Navbar() {
               href={item.href}
               aria-label={isDocument ? "Open CV" : item.label}
               aria-current={isActive && !isDocument ? "page" : undefined}
-              onClick={() => setActiveItem(item.href)}
+              onClick={() => {
+                if (!isDocument) setActiveItem(item.href);
+              }}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.38, delay: 0.34 + index * 0.055, ease: [0.22, 1, 0.36, 1] }}

@@ -33,7 +33,7 @@ const skillGroups = [
     category: "Tools & Workflow",
     description:
       "Tools that support development, collaboration, analysis, and product design.",
-    skills: ["Git / GitHub", "VS Code", "Figma"],
+    skills: ["Git / GitHub", "VS Code"],
   },
 ];
 

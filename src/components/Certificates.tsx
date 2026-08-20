@@ -1,7 +1,9 @@
-const certificateAreas = [
-  "Web Development",
-  "Data Analytics",
-  "Information Systems",
+import Image from "next/image";
+
+const certificates = [
+  "/images/certificates/certificate-sample-1.jpg",
+  "/images/certificates/certificate-sample-2.jpg",
+  "/images/certificates/certificate-sample-3.jpg",
 ];
 
 export default function Certificates() {
@@ -29,34 +31,26 @@ export default function Certificates() {
             </h2>
           </div>
 
-          <p className="max-w-md text-sm leading-6 text-[#737373] lg:justify-self-end lg:text-right">
-            A dedicated space for verified courses, certifications, and the
-            skills developed through continuous learning.
-          </p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
-          <article className="group relative overflow-hidden rounded-3xl border border-[#2A2A2A] bg-[#111111] p-7 md:p-10">
-            <div aria-hidden="true" className="absolute right-0 top-0 h-40 w-40 translate-x-12 -translate-y-12 rounded-full border border-[#7C3AED]/30" />
-            <div className="relative">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#A78BFA]/35 bg-[#7C3AED]/15 text-xl text-[#C4B5FD]">✦</div>
-              <p className="mt-10 text-xs font-medium uppercase tracking-[0.2em] text-[#A78BFA]">Credential collection</p>
-              <h3 className="mt-3 font-[family-name:var(--font-space-grotesk)] text-2xl font-semibold tracking-tight text-[#F5F5F5] md:text-3xl">Certificates are being curated.</h3>
-              <p className="mt-4 max-w-lg text-sm leading-7 text-[#A1A1A1]">Verified credentials will appear here as each learning milestone is completed.</p>
-            </div>
-          </article>
-
-          <div className="rounded-3xl border border-[#262626] bg-[#0D0D0D] p-7 md:p-10">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#737373]">Focus areas</p>
-            <div className="mt-7 space-y-4">
-              {certificateAreas.map((area, index) => (
-                <div key={area} className="flex items-center gap-4 border-b border-[#202020] pb-4 last:border-0 last:pb-0">
-                  <span className="text-xs text-[#7C3AED]">0{index + 1}</span>
-                  <span className="font-[family-name:var(--font-space-grotesk)] text-lg font-medium text-[#D4D4D4]">{area}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {certificates.map((src, index) => (
+            <a
+              key={src}
+              href={src}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative aspect-[1.414/1] overflow-hidden rounded-3xl border border-[#2A2A2A] bg-[#111111]"
+            >
+              <Image
+                src={src}
+                alt={`Certificate sample ${index + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </a>
+          ))}
         </div>
       </div>
     </section>
