@@ -16,6 +16,84 @@ body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html[data-theme="light"] {
+  --background: #f6f4fb;
+  --foreground: #171226;
+  --muted: #625b70;
+  --border: #ddd7e8;
+}
+
+html[data-theme="light"] main {
+  background: #f6f4fb !important;
+  color: #171226 !important;
+}
+
+html[data-theme="light"] [class~="bg-[#0A0A0A]"],
+html[data-theme="light"] [class~="bg-[#0D0D0D]"] {
+  background-color: #f6f4fb !important;
+}
+
+html[data-theme="light"] [class~="bg-[#111111]"] {
+  background-color: #ffffff !important;
+}
+
+/* Components use Tailwind's arbitrary color utilities. These explicit light
+   surfaces keep compact elements, such as the skill chips, readable too. */
+html[data-theme="light"] #skills .rounded-full,
+html[data-theme="light"] #education .rounded-full,
+html[data-theme="light"] #certificates .rounded-3xl,
+html[data-theme="light"] #projects .rounded-2xl,
+html[data-theme="light"] #contact input,
+html[data-theme="light"] #contact textarea {
+  background-color: #ffffff !important;
+  color: #171226 !important;
+}
+
+html[data-theme="light"] #home .cursor-default.rounded-full {
+  background-color: #ffffff !important;
+  border-color: #ded7e9 !important;
+  color: #30283d !important;
+}
+
+html[data-theme="light"] #skills .rounded-full:hover,
+html[data-theme="light"] #education .rounded-full:hover {
+  background-color: #f0ebff !important;
+}
+
+html[data-theme="light"] [class~="bg-[#1F1F1F]"] {
+  background-color: #e9e4f1 !important;
+}
+
+html[data-theme="light"] [class~="border-[#1A1A1A]"],
+html[data-theme="light"] [class~="border-[#1F1F1F]"],
+html[data-theme="light"] [class~="border-[#242424]"],
+html[data-theme="light"] [class~="border-[#262626]"],
+html[data-theme="light"] [class~="border-[#292929]"],
+html[data-theme="light"] [class~="border-[#2A2A2A]"] {
+  border-color: #ded7e9 !important;
+}
+
+html[data-theme="light"] [class~="text-[#F5F5F5]"],
+html[data-theme="light"] [class~="text-[#E5E5E5]"],
+html[data-theme="light"] [class~="text-[#D4D4D4]"] {
+  color: #171226 !important;
+}
+
+html[data-theme="light"] [class~="text-[#A1A1A1]"],
+html[data-theme="light"] [class~="text-[#737373]"],
+html[data-theme="light"] [class~="text-[#525252]"] {
+  color: #625b70 !important;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f6f4fb;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #c9bfda;
 }
 
 ::selection {

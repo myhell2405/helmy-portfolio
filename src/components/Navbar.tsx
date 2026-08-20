@@ -1,309 +1,105 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+type IconName =
+  | "home"
+  | "user"
+  | "graduation"
+  | "badge"
+  | "sparkles"
+  | "folder"
+  | "path"
+  | "mail"
+  | "file";
 
-const navItems = [
-  { label: "About", href: "#about" },
-  { label: "Education", href: "#education" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Journey", href: "#journey" },
-  { label: "Contact", href: "#contact" },
+const navItems: { label: string; href: string; icon: IconName }[] = [
+  { label: "Home", href: "#home", icon: "home" },
+  { label: "About", href: "#about", icon: "user" },
+  { label: "Skills", href: "#skills", icon: "sparkles" },
+  { label: "Education", href: "#education", icon: "graduation" },
+  { label: "Certificates", href: "#certificates", icon: "badge" },
+  { label: "Projects", href: "#projects", icon: "folder" },
+  { label: "Journey", href: "#journey", icon: "path" },
+  { label: "Contact", href: "#contact", icon: "mail" },
+  { label: "CV", href: "/cv.pdf", icon: "file" },
 ];
 
-const navContainer = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.07,
-    },
-  },
-};
-
-const navItem = {
-  hidden: {
-    opacity: 0,
-    y: -8,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.45,
-      ease,
-    },
-  },
-};
-
-const mobileNavItem = {
-  hidden: {
-    opacity: 0,
-    x: -14,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.35,
-      ease,
-    },
-  },
-};
-
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const closeMenu = () => {
-    setIsOpen(false);
+function DockIcon({ name }: { name: IconName }) {
+  const paths: Record<IconName, React.ReactNode> = {
+    home: <path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 21v-6h6v6" />,
+    user: <><circle cx="12" cy="8" r="3.5" /><path d="M4.5 21a7.5 7.5 0 0 1 15 0" /></>,
+    graduation: <><path d="m2.5 9.5 9.5-5 9.5 5-9.5 5zM6 11.5V16c2.4 2.7 9.6 2.7 12 0v-4.5" /><path d="M21.5 10v5" /></>,
+    badge: <><circle cx="12" cy="10" r="6" /><path d="m8.5 15-1 6 4.5-2.5 4.5 2.5-1-6M12 7.5l.8 1.6 1.7.2-1.2 1.2.3 1.7-1.6-.8-1.6.8.3-1.7-1.2-1.2 1.7-.2z" /></>,
+    sparkles: <><path d="m12 3-1.4 5.6L5 10l5.6 1.4L12 17l1.4-5.6L19 10l-5.6-1.4z" /><path d="m19 16-.7 2.3L16 19l2.3.7L19 22l.7-2.3L22 19l-2.3-.7zM5 3l-.5 1.5L3 5l1.5.5L5 7l.5-1.5L7 5l-1.5-.5z" /></>,
+    folder: <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H10l2 2h6.5A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z" />,
+    path: <><circle cx="6" cy="18" r="2" /><circle cx="18" cy="6" r="2" /><path d="M8 18h3a3 3 0 0 0 3-3v-2a3 3 0 0 1 3-3" /></>,
+    mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></>,
+    file: <><path d="M6 3h8l4 4v14H6z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></>,
   };
 
   return (
-    <motion.header
-      initial={{
-        opacity: 0,
-        y: -20,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        duration: 0.6,
-        ease,
-      }}
-      className="fixed inset-x-0 top-0 z-50"
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="h-5 w-5">
+      {paths[name]}
+    </svg>
+  );
+}
+
+export default function Navbar() {
+  const [activeItem, setActiveItem] = useState("#home");
+
+  return (
+    <motion.nav
+      aria-label="Main navigation"
+      initial={{ opacity: 0, y: 28 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 bottom-5 z-50 flex justify-center px-3 sm:bottom-7"
     >
-      {/* Main navbar */}
-      <div className="mx-auto max-w-7xl px-4 pt-3 sm:px-6 lg:px-8">
-        <nav className="relative flex items-center justify-between rounded-2xl border border-white/[0.06] bg-[#0A0A0A]/80 px-4 py-3 backdrop-blur-xl sm:px-5">
-          {/* Subtle violet glow */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-[#7C3AED]/[0.03] via-transparent to-[#7C3AED]/[0.03]"
-          />
+      <div className="relative flex max-w-full items-end gap-1 overflow-x-auto rounded-[1.45rem] border border-white/15 bg-[#111827]/90 p-1.5 shadow-[0_18px_55px_rgba(0,0,0,0.5),0_0_0_1px_rgba(124,58,237,0.12)] backdrop-blur-2xl [scrollbar-width:none]">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-x-5 bottom-0 h-px bg-gradient-to-r from-transparent via-[#a78bfa]/60 to-transparent" />
 
-          {/* Logo */}
-          <motion.a
-            href="#home"
-            initial={{
-              opacity: 0,
-              x: -12,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              duration: 0.5,
-              delay: 0.15,
-              ease,
-            }}
-            whileHover={{
-              scale: 1.04,
-            }}
-            className="relative z-10 font-[family-name:var(--font-space-grotesk)] text-xl font-bold tracking-tight text-[#F5F5F5]"
-          >
-            HA<span className="text-[#7C3AED]">.</span>
-          </motion.a>
+        {navItems.map((item, index) => {
+          const isActive = activeItem === item.href;
+          const isDocument = item.href === "/cv.pdf";
 
-          {/* Desktop Navigation */}
-          <motion.div
-            variants={navContainer}
-            initial="hidden"
-            animate="visible"
-            className="relative z-10 hidden items-center gap-7 md:flex lg:gap-8"
-          >
-            {navItems.map((item) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                variants={navItem}
-                whileHover={{
-                  y: -1,
-                }}
-                className="group relative py-2 text-sm text-[#737373] transition-colors duration-300 hover:text-[#F5F5F5]"
-              >
-                {item.label}
-
-                {/* Hover line */}
-                <span className="absolute bottom-0 left-0 h-px w-0 bg-[#7C3AED] transition-all duration-300 group-hover:w-full" />
-              </motion.a>
-            ))}
-
-            {/* CV */}
+          return (
             <motion.a
-              href="/cv.pdf"
-              variants={navItem}
-              whileHover={{
-                y: -2,
-              }}
-              whileTap={{
-                scale: 0.96,
-              }}
-              className="ml-1 inline-flex items-center gap-2 rounded-full border border-[#292929] bg-[#111111] px-4 py-2 text-xs font-semibold text-[#D4D4D4] transition-all duration-300 hover:border-[#7C3AED]/60 hover:bg-[#7C3AED] hover:text-white"
+              key={item.href}
+              href={item.href}
+              aria-label={isDocument ? "Open CV" : item.label}
+              aria-current={isActive && !isDocument ? "page" : undefined}
+              onClick={() => setActiveItem(item.href)}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.38, delay: 0.34 + index * 0.055, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -10, scale: 1.12 }}
+              whileTap={{ scale: 0.82, y: -2 }}
+              className="group relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-[#d1d5db] transition-colors duration-200 hover:bg-white hover:text-[#312e81] focus-visible:bg-white focus-visible:text-[#312e81] sm:h-11 sm:w-11"
             >
-              <span>CV</span>
-
-              <span className="text-[#525252] transition-colors duration-300 group-hover:text-white">
-                ↓
+              {isActive && (
+                <motion.span
+                  layoutId="active-dock-item"
+                  className="absolute inset-0 rounded-xl bg-[#7c3aed] shadow-[0_6px_20px_rgba(124,58,237,0.42)]"
+                  transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                />
+              )}
+              <motion.span
+                animate={isActive ? { rotate: [0, -10, 8, 0], scale: [1, 1.15, 1] } : { rotate: 0, scale: 1 }}
+                transition={{ duration: 0.38, ease: "easeOut" }}
+                className="relative z-10"
+              >
+                <DockIcon name={item.icon} />
+              </motion.span>
+              <span className="pointer-events-none absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-[#030712] px-2.5 py-1 text-[10px] font-semibold tracking-wide text-white opacity-0 shadow-xl transition-all duration-200 group-hover:-top-11 group-hover:opacity-100 group-focus-visible:-top-11 group-focus-visible:opacity-100">
+                {item.label}
               </span>
+              {isActive && <span aria-hidden="true" className="absolute -bottom-1 h-1 w-1 rounded-full bg-[#c4b5fd]" />}
             </motion.a>
-          </motion.div>
-
-          {/* Mobile menu button */}
-          <motion.button
-            type="button"
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((prev) => !prev)}
-            whileTap={{
-              scale: 0.9,
-            }}
-            className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-[#292929] bg-[#111111] text-[#D4D4D4] transition-all duration-300 hover:border-[#7C3AED]/60 hover:text-white md:hidden"
-          >
-            <motion.div
-              animate={isOpen ? "open" : "closed"}
-              className="flex h-4 w-5 flex-col justify-center gap-[5px]"
-            >
-              <motion.span
-                variants={{
-                  closed: {
-                    rotate: 0,
-                    y: 0,
-                  },
-                  open: {
-                    rotate: 45,
-                    y: 5,
-                  },
-                }}
-                transition={{
-                  duration: 0.25,
-                  ease,
-                }}
-                className="block h-px w-5 origin-center bg-current"
-              />
-
-              <motion.span
-                variants={{
-                  closed: {
-                    opacity: 1,
-                  },
-                  open: {
-                    opacity: 0,
-                  },
-                }}
-                transition={{
-                  duration: 0.15,
-                }}
-                className="block h-px w-5 bg-current"
-              />
-
-              <motion.span
-                variants={{
-                  closed: {
-                    rotate: 0,
-                    y: 0,
-                  },
-                  open: {
-                    rotate: -45,
-                    y: -5,
-                  },
-                }}
-                transition={{
-                  duration: 0.25,
-                  ease,
-                }}
-                className="block h-px w-5 origin-center bg-current"
-              />
-            </motion.div>
-          </motion.button>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: -10,
-                height: 0,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-                height: "auto",
-              }}
-              exit={{
-                opacity: 0,
-                y: -10,
-                height: 0,
-              }}
-              transition={{
-                duration: 0.35,
-                ease,
-              }}
-              className="overflow-hidden md:hidden"
-            >
-              <div className="mt-2 overflow-hidden rounded-2xl border border-[#242424] bg-[#0C0C0C]/95 p-2 backdrop-blur-xl">
-                <motion.div
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: {},
-                    visible: {
-                      transition: {
-                        delayChildren: 0.08,
-                        staggerChildren: 0.055,
-                      },
-                    },
-                  }}
-                  className="flex flex-col"
-                >
-                  {navItems.map((item, index) => (
-                    <motion.a
-                      key={item.href}
-                      href={item.href}
-                      onClick={closeMenu}
-                      variants={mobileNavItem}
-                      className="group flex items-center justify-between rounded-xl px-4 py-3.5 text-sm text-[#737373] transition-all duration-300 hover:bg-[#141414] hover:text-[#F5F5F5]"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-[10px] font-medium text-[#3F3F3F] transition-colors duration-300 group-hover:text-[#7C3AED]">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-
-                        <span>{item.label}</span>
-                      </div>
-
-                      <span className="text-[#3F3F3F] transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#7C3AED]">
-                        →
-                      </span>
-                    </motion.a>
-                  ))}
-
-                  {/* Mobile CV */}
-                  <motion.a
-                    href="/cv.pdf"
-                    onClick={closeMenu}
-                    variants={mobileNavItem}
-                    whileTap={{
-                      scale: 0.97,
-                    }}
-                    className="mt-2 flex items-center justify-between rounded-xl bg-[#F5F5F5] px-4 py-3.5 text-sm font-semibold text-[#0A0A0A] transition-all duration-300 hover:bg-[#7C3AED] hover:text-white"
-                  >
-                    <span>Download CV</span>
-
-                    <span>↓</span>
-                  </motion.a>
-                </motion.div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          );
+        })}
       </div>
-    </motion.header>
+    </motion.nav>
   );
 }

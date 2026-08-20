@@ -279,7 +279,7 @@ export default function Hero() {
                 whileHover={{
                   y: -2,
                   borderColor: "rgba(124, 58, 237, 0.6)",
-                  color: "#F5F5F5",
+                  color: "var(--foreground)",
                 }}
                 className="cursor-default rounded-full border border-[#262626] bg-[#111111]/80 px-3 py-1.5 text-xs text-[#A1A1A1] backdrop-blur-sm transition-colors"
               >
@@ -430,4 +430,3 @@ export default function Hero() {
     </section>
   );
 }
-
