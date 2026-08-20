@@ -1,9 +1,8 @@
 import Image from "next/image";
 
 const certificates = [
-  "/images/certificates/certificate-sample-1.jpg",
-  "/images/certificates/certificate-sample-2.jpg",
-  "/images/certificates/certificate-sample-3.jpg",
+  "/images/certificates/Certificate1.jpg",
+  "/images/certificates/Certificate2.jpg",
 ];
 
 export default function Certificates() {
