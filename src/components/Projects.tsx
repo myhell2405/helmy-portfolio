@@ -3,12 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const caseStudyScreens = [
-  "/images/projects/academic-dashboard-sample.jpg",
-  "/images/projects/academic-students-sample.jpg",
-  "/images/projects/academic-reports-sample.jpg",
-];
-
 const projects = [
   {
     number: "01",
@@ -17,13 +11,16 @@ const projects = [
     client: "SDN 01 Durian Gadang",
     description:
       "A web-based academic information system designed to improve the management and integration of academic data, including student information, grades, attendance, class management, and report cards.",
-    technologies: [
-      "Laravel",
-      "PHP",
-      "MySQL",
-      "Tailwind CSS",
-    ],
+    technologies: ["Laravel", "PHP", "MySQL", "Tailwind CSS"],
     featured: true,
+    screens: [
+      "/images/projects/siakad/siakad1.png",
+      "/images/projects/siakad/siakad2.png",
+      "/images/projects/siakad/siakad3.png",
+      "/images/projects/siakad/siakad4.png",
+      "/images/projects/siakad/siakad5.png",
+      "/images/projects/siakad/siakad6.png",
+    ],
   },
   {
     number: "02",
@@ -39,6 +36,7 @@ const projects = [
       "Data Analytics",
     ],
     featured: false,
+    screens: [],
   },
   {
     number: "03",
@@ -54,11 +52,14 @@ const projects = [
       "Power BI",
     ],
     featured: false,
+    screens: [],
   },
 ];
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<(typeof projects)[number] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<
+    (typeof projects)[number] | null
+  >(null);
 
   return (
     <section
@@ -170,6 +171,7 @@ export default function Projects() {
         </div>
       </div>
 
+      {/* Case Study Modal */}
       {selectedProject && (
         <div
           role="dialog"
@@ -182,23 +184,60 @@ export default function Projects() {
             className="max-h-[90vh] w-full max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0D0D0D] p-6 shadow-2xl md:p-10"
             onClick={(event) => event.stopPropagation()}
           >
+            {/* Modal Header */}
             <div className="flex items-start justify-between gap-6">
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA]">Case study preview</p>
-                <h3 id="case-study-title" className="mt-2 font-[family-name:var(--font-space-grotesk)] text-3xl font-semibold text-[#F5F5F5] md:text-5xl">
+                <p className="text-xs uppercase tracking-[0.2em] text-[#A78BFA]">
+                  Case study preview
+                </p>
+
+                <h3
+                  id="case-study-title"
+                  className="mt-2 font-[family-name:var(--font-space-grotesk)] text-3xl font-semibold text-[#F5F5F5] md:text-5xl"
+                >
                   {selectedProject.title}
                 </h3>
+
+                <p className="mt-2 text-sm text-[#737373]">
+                  {selectedProject.client}
+                </p>
               </div>
-              <button type="button" aria-label="Close case study" onClick={() => setSelectedProject(null)} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#262626] text-xl text-[#D4D4D4] transition-colors hover:border-[#7C3AED] hover:text-white">×</button>
+
+              <button
+                type="button"
+                aria-label="Close case study"
+                onClick={() => setSelectedProject(null)}
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#262626] text-xl text-[#D4D4D4] transition-colors hover:border-[#7C3AED] hover:text-white"
+              >
+                ×
+              </button>
             </div>
 
-            <div className="mt-8 grid gap-5 md:grid-cols-3">
-              {caseStudyScreens.map((src, index) => (
-                <div key={src} className="overflow-hidden rounded-2xl border border-[#262626] bg-[#111111]">
-                  <Image src={src} alt={`${selectedProject.title} sample screen ${index + 1}`} width={1440} height={960} className="h-auto w-full" />
-                </div>
-              ))}
-            </div>
+            {/* Screenshots */}
+            {selectedProject.screens.length > 0 ? (
+              <div className="mt-8 grid gap-5 md:grid-cols-2">
+                {selectedProject.screens.map((src, index) => (
+                  <div
+                    key={src}
+                    className="group overflow-hidden rounded-2xl border border-[#262626] bg-[#111111]"
+                  >
+                    <Image
+                      src={src}
+                      alt={`${selectedProject.title} screenshot ${index + 1}`}
+                      width={1440}
+                      height={960}
+                      className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="mt-8 flex min-h-48 items-center justify-center rounded-2xl border border-dashed border-[#262626] bg-[#111111]">
+                <p className="text-sm text-[#525252]">
+                  Case study screenshots will be added soon.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       )}
