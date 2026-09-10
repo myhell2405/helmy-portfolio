@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 const education = [
   {
     period: "2022 — 2026",
@@ -16,6 +20,19 @@ const education = [
 ];
 
 export default function Education() {
+  const [isTranscriptOpen, setIsTranscriptOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isTranscriptOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsTranscriptOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [isTranscriptOpen]);
+
   return (
     <section
       id="education"
@@ -92,15 +109,14 @@ export default function Education() {
                     </p>
                   </div>
 
-                  <a
-                    href="/documents/transcript-sample.pdf"
-                    target="_blank"
-                    rel="noreferrer"
+                  <button
+                    type="button"
+                    onClick={() => setIsTranscriptOpen(true)}
                     className="inline-flex items-center gap-3 self-stretch rounded-2xl border border-[#262626] bg-[#111111] px-5 py-3 text-sm font-medium text-[#D4D4D4] transition-colors hover:border-[#7C3AED]/60 hover:text-[#C4B5FD]"
                   >
                     <span aria-hidden="true">↗</span>
                     View academic transcript
-                  </a>
+                  </button>
                 </div>
 
                 {/* Academic highlights */}
@@ -131,6 +147,44 @@ export default function Education() {
           </span>
         </div>
       </div>
+
+      {isTranscriptOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="transcript-preview-title"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md sm:p-8"
+          onClick={() => setIsTranscriptOpen(false)}
+        >
+          <div
+            className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0D0D0D] shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4 sm:px-6">
+              <h2
+                id="transcript-preview-title"
+                className="font-[family-name:var(--font-space-grotesk)] text-xl font-semibold text-white"
+              >
+                Academic Transcript
+              </h2>
+              <button
+                type="button"
+                aria-label="Close academic transcript preview"
+                onClick={() => setIsTranscriptOpen(false)}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-xl text-white transition-colors hover:border-[#A78BFA] hover:bg-[#7C3AED]"
+              >
+                ×
+              </button>
+            </div>
+
+            <iframe
+              src="/documents/transcript-sample.pdf"
+              title="Academic transcript preview"
+              className="h-[65vh] min-h-[420px] w-full bg-white"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

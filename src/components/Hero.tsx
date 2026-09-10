@@ -321,6 +321,8 @@ export default function Hero() {
 
             <motion.a
               href="/cv.pdf"
+              target="_blank"
+              rel="noreferrer"
               whileHover={{
                 y: -3,
               }}
