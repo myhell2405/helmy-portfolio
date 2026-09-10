@@ -109,6 +109,7 @@ function DockIcon({ name }: { name: IconName }) {
 
 export default function Navbar() {
   const [activeItem, setActiveItem] = useState("#home");
+  const [isCvOpen, setIsCvOpen] = useState(false);
 
   useEffect(() => {
     const sectionItems = navItems.filter((item) =>
@@ -206,6 +207,17 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isCvOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsCvOpen(false);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [isCvOpen]);
+
   return (
     <motion.nav
       aria-label="Main navigation"
@@ -285,8 +297,11 @@ export default function Navbar() {
                   ? "page"
                   : undefined
               }
-              onClick={() => {
-                if (!isDocument) {
+              onClick={(event) => {
+                if (isDocument) {
+                  event.preventDefault();
+                  setIsCvOpen(true);
+                } else {
                   setActiveItem(item.href);
                 }
               }}
@@ -465,8 +480,11 @@ export default function Navbar() {
               aria-current={
                 isActive && !isDocument ? "page" : undefined
               }
-              onClick={() => {
-                if (!isDocument) {
+              onClick={(event) => {
+                if (isDocument) {
+                  event.preventDefault();
+                  setIsCvOpen(true);
+                } else {
                   setActiveItem(item.href);
                 }
               }}
@@ -553,6 +571,55 @@ export default function Navbar() {
           );
         })}
       </div>
+
+      {isCvOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cv-preview-title"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md sm:p-8"
+          onClick={() => setIsCvOpen(false)}
+        >
+          <div
+            className="flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0D0D0D] shadow-2xl"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4 sm:px-6">
+              <h2
+                id="cv-preview-title"
+                className="font-[family-name:var(--font-space-grotesk)] text-xl font-semibold text-white"
+              >
+                Curriculum Vitae
+              </h2>
+              <button
+                type="button"
+                aria-label="Close CV preview"
+                onClick={() => setIsCvOpen(false)}
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-xl text-white transition-colors hover:border-[#A78BFA] hover:bg-[#7C3AED]"
+              >
+                ×
+              </button>
+            </div>
+
+            <iframe
+              src="/cv.pdf"
+              title="Curriculum Vitae preview"
+              className="h-[65vh] min-h-[420px] w-full bg-white"
+            />
+
+            <div className="flex justify-end border-t border-white/10 px-5 py-4 sm:px-6">
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-[#7C3AED] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#6D28D9]"
+              >
+                Download CV
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </motion.nav>
   );
 }

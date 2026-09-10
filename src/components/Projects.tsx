@@ -177,11 +177,11 @@ export default function Projects() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="case-study-title"
-          className="fixed inset-0 z-60 flex items-end bg-black/75 p-4 backdrop-blur-sm md:items-center md:p-8"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm md:p-8"
           onClick={() => setSelectedProject(null)}
         >
           <div
-            className="max-h-[90vh] w-full max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0D0D0D] p-6 shadow-2xl md:p-10"
+            className="mx-auto max-h-[90vh] w-full max-w-6xl overflow-y-auto rounded-3xl border border-white/10 bg-[#0D0D0D] p-6 shadow-2xl md:p-10"
             onClick={(event) => event.stopPropagation()}
           >
             {/* Modal Header */}

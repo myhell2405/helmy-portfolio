@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const certificates = [
   "/images/certificates/Certificate1.jpg",
@@ -6,6 +9,21 @@ const certificates = [
 ];
 
 export default function Certificates() {
+  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(
+    null,
+  );
+
+  useEffect(() => {
+    if (!selectedCertificate) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedCertificate(null);
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [selectedCertificate]);
+
   return (
     <section
       id="certificates"
@@ -32,14 +50,14 @@ export default function Certificates() {
 
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="flex flex-wrap justify-center gap-5">
           {certificates.map((src, index) => (
-            <a
+            <button
               key={src}
-              href={src}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative aspect-[1.414/1] overflow-hidden rounded-3xl border border-[#2A2A2A] bg-[#111111]"
+              type="button"
+              onClick={() => setSelectedCertificate(src)}
+              aria-label={`View Certificate${index + 1}`}
+              className="group relative aspect-[1.414/1] w-full max-w-[560px] overflow-hidden rounded-3xl border border-[#2A2A2A] bg-[#111111] md:w-[calc(50%-0.625rem)] xl:w-[calc(33.333%-0.833rem)]"
             >
               <Image
                 src={src}
@@ -48,10 +66,41 @@ export default function Certificates() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
-            </a>
+            </button>
           ))}
         </div>
       </div>
+
+      {selectedCertificate && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Certificate preview"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md sm:p-8"
+          onClick={() => setSelectedCertificate(null)}
+        >
+          <div
+            className="relative flex max-h-[90vh] w-full max-w-5xl items-center justify-center rounded-2xl border border-white/15 bg-[#0D0D0D] p-3 shadow-2xl sm:p-5"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <Image
+              src={selectedCertificate}
+              alt="Selected certificate"
+              width={1600}
+              height={1131}
+              className="max-h-[82vh] w-auto max-w-full rounded-lg object-contain"
+            />
+            <button
+              type="button"
+              aria-label="Close certificate preview"
+              onClick={() => setSelectedCertificate(null)}
+              className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/60 text-xl text-white transition-colors hover:border-[#A78BFA] hover:bg-[#7C3AED]"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
