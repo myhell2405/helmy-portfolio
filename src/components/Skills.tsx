@@ -41,12 +41,12 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-24 md:py-32"
+      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-10 md:py-24"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-16 md:mb-20">
-          <div className="mb-6 flex items-center gap-3">
+        <div className="mb-8 md:mb-14">
+          <div className="mb-4 flex items-center gap-3">
             <span className="h-px w-10 bg-[#7C3AED]" />
 
             <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A1A1A1]">
@@ -54,7 +54,7 @@ export default function Skills() {
             </p>
           </div>
 
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr] lg:items-end">
+          <div className="grid gap-5 lg:grid-cols-[1fr_0.7fr] lg:items-end">
             <h2 className="max-w-4xl font-[family-name:var(--font-space-grotesk)] text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-[#F5F5F5] md:text-6xl lg:text-7xl">
               Tools I use to turn
               <br />
@@ -73,7 +73,7 @@ export default function Skills() {
           {skillGroups.map((group) => (
             <div
               key={group.number}
-              className="group grid gap-8 border-b border-[#1F1F1F] py-10 lg:grid-cols-[120px_0.7fr_1fr] lg:gap-12 lg:py-12"
+              className="group grid gap-5 border-b border-[#1F1F1F] py-7 lg:grid-cols-[120px_0.7fr_1fr] lg:gap-10 lg:py-10"
             >
               {/* Number */}
               <div>
@@ -88,7 +88,7 @@ export default function Skills() {
                   {group.category}
                 </h3>
 
-                <p className="mt-3 max-w-sm text-sm leading-6 text-[#737373]">
+                <p className="mt-2 max-w-sm text-sm leading-6 text-[#737373]">
                   {group.description}
                 </p>
               </div>
@@ -98,7 +98,7 @@ export default function Skills() {
                 {group.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="rounded-full border border-[#262626] bg-[#111111] px-4 py-2 text-sm text-[#A1A1A1] transition-all duration-300 hover:border-[#7C3AED]/60 hover:bg-[#7C3AED]/10 hover:text-[#F5F5F5]"
+                    className="rounded-full border border-[#262626] bg-[#111111] px-3.5 py-1.5 text-sm text-[#A1A1A1] transition-all duration-300 hover:border-[#7C3AED]/60 hover:bg-[#7C3AED]/10 hover:text-[#F5F5F5]"
                   >
                     {skill}
                   </span>
@@ -109,7 +109,7 @@ export default function Skills() {
         </div>
 
         {/* Bottom statement */}
-        <div className="mt-20 flex flex-col gap-5 border-t border-[#1F1F1F] pt-8 sm:flex-row sm:items-center sm:justify-between md:mt-24">
+        <div className="mt-10 flex flex-col gap-4 border-t border-[#1F1F1F] pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-16">
           <p className="max-w-2xl font-[family-name:var(--font-space-grotesk)] text-xl font-medium leading-tight text-[#D4D4D4] md:text-2xl">
             Always learning.
             <br />

@@ -92,7 +92,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1fr_420px] lg:gap-20">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-8 lg:grid-cols-[1fr_420px] lg:gap-16">
         {/* Left content */}
         <div>
           {/* Eyebrow */}
@@ -405,7 +405,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.a
-        href="#about"
+        href="#skills"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
