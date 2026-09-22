@@ -64,13 +64,13 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-24 md:py-32"
+      className="relative overflow-hidden px-6 py-10 md:py-24"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-16 grid gap-8 md:mb-20 lg:grid-cols-[1fr_0.6fr] lg:items-end">
+        <div className="mb-8 grid gap-5 md:mb-14 lg:grid-cols-[1fr_0.6fr] lg:items-end">
           <div>
-            <div className="mb-6 flex items-center gap-3">
+            <div className="mb-4 flex items-center gap-3">
               <span className="h-px w-10 bg-[#7C3AED]" />
 
               <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A1A1A1]">
@@ -98,9 +98,9 @@ export default function Projects() {
           {projects.map((project) => (
             <article
               key={project.number}
-              className="group border-b border-[#1F1F1F] py-10 md:py-14"
+              className="group border-b border-[#1F1F1F] py-7 md:py-10"
             >
-              <div className="grid gap-8 lg:grid-cols-[100px_1fr_280px] lg:gap-12">
+              <div className="grid gap-5 lg:grid-cols-[100px_1fr_280px] lg:gap-10">
                 {/* Number */}
                 <div>
                   <span className="text-xs font-medium tracking-[0.15em] text-[#525252]">
@@ -122,12 +122,12 @@ export default function Projects() {
                     {project.client}
                   </p>
 
-                  <p className="mt-6 max-w-2xl text-sm leading-7 text-[#737373] md:text-base">
+                  <p className="mt-4 max-w-2xl text-sm leading-7 text-[#737373] md:text-base">
                     {project.description}
                   </p>
 
                   {/* Technologies */}
-                  <div className="mt-7 flex flex-wrap gap-2">
+                  <div className="mt-5 flex flex-wrap gap-2">
                     {project.technologies.map((technology) => (
                       <span
                         key={technology}
@@ -159,7 +159,7 @@ export default function Projects() {
         </div>
 
         {/* Bottom statement */}
-        <div className="mt-20 flex flex-col gap-5 border-t border-[#1F1F1F] pt-8 sm:flex-row sm:items-center sm:justify-between md:mt-24">
+        <div className="mt-10 flex flex-col gap-4 border-t border-[#1F1F1F] pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-16">
           <p className="max-w-xl text-sm leading-6 text-[#737373]">
             More projects will be added as I continue learning, building, and
             experimenting.

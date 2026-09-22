@@ -405,7 +405,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.a
-        href="#about"
+        href="#skills"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{

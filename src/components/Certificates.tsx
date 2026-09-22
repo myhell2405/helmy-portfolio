@@ -27,14 +27,14 @@ export default function Certificates() {
   return (
     <section
       id="certificates"
-      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-24 md:py-32"
+      className="relative overflow-hidden px-6 py-10 md:py-24"
     >
       <div aria-hidden="true" className="pointer-events-none absolute right-0 top-1/4 h-80 w-80 rounded-full bg-[#7C3AED]/8 blur-[110px]" />
 
       <div className="relative mx-auto max-w-7xl">
-        <div className="mb-16 grid gap-8 md:mb-20 lg:grid-cols-[1fr_0.6fr] lg:items-end">
+        <div className="mb-8 grid gap-5 md:mb-14 lg:grid-cols-[1fr_0.6fr] lg:items-end">
           <div>
-            <div className="mb-6 flex items-center gap-3">
+            <div className="mb-4 flex items-center gap-3">
               <span className="h-px w-10 bg-[#7C3AED]" />
               <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A1A1A1]">
                 Certificates
@@ -50,7 +50,7 @@ export default function Certificates() {
 
         </div>
 
-        <div className="flex flex-wrap justify-center gap-5">
+        <div className="flex flex-wrap justify-center gap-3">
           {certificates.map((src, index) => (
             <button
               key={src}

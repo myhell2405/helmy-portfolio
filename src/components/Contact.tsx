@@ -75,7 +75,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-24 md:py-32"
+      className="relative overflow-hidden px-6 py-10 md:py-24"
     >
       {/* Background atmosphere */}
       <div
@@ -116,7 +116,7 @@ export default function Contact() {
           {/* Label */}
           <motion.div
             variants={reveal}
-            className="mb-6 flex items-center gap-3"
+            className="mb-4 flex items-center gap-3"
           >
             <span className="h-px w-10 bg-[#7C3AED]" />
 
@@ -139,15 +139,15 @@ export default function Contact() {
 
           <motion.p
             variants={reveal}
-            className="mt-8 max-w-2xl text-base leading-7 text-[#737373] md:text-lg"
+            className="mt-5 max-w-2xl text-base leading-7 text-[#737373] md:text-lg"
           >
-            Have an idea, opportunity, or simply want to talk about
-            technology and data? My inbox is always open.
+            Have an idea, opportunity, or simply want to discuss technology
+            and data? My inbox is always open.
           </motion.p>
         </motion.div>
 
         {/* Main contact area */}
-        <div className="mt-16 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-10 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
           {/* Email card */}
           <motion.a
             href="mailto:helmyakrim@gmail.com"
