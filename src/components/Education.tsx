@@ -36,13 +36,13 @@ export default function Education() {
   return (
     <section
       id="education"
-      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-10 md:py-24"
+      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-24 md:py-32"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-8 grid gap-5 md:mb-14 lg:grid-cols-[1fr_0.6fr] lg:items-end">
+        <div className="mb-16 grid gap-8 md:mb-20 lg:grid-cols-[1fr_0.6fr] lg:items-end">
           <div>
-            <div className="mb-4 flex items-center gap-3">
+            <div className="mb-6 flex items-center gap-3">
               <span className="h-px w-10 bg-[#7C3AED]" />
 
               <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A1A1A1]">
@@ -70,7 +70,7 @@ export default function Education() {
           {education.map((item) => (
             <article
               key={item.degree}
-              className="grid gap-5 border-b border-[#1F1F1F] py-7 md:py-10 lg:grid-cols-[180px_1fr] lg:gap-14"
+              className="grid gap-8 border-b border-[#1F1F1F] py-10 md:py-12 lg:grid-cols-[180px_1fr] lg:gap-16"
             >
               {/* Period */}
               <div>
@@ -95,11 +95,11 @@ export default function Education() {
                   {item.institution}
                 </p>
 
-                <p className="mt-4 max-w-2xl text-sm leading-7 text-[#737373] md:text-base">
+                <p className="mt-6 max-w-2xl text-sm leading-7 text-[#737373] md:text-base">
                   {item.description}
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-8 flex flex-wrap gap-3">
                   <div className="rounded-2xl border border-[#7C3AED]/35 bg-[#7C3AED]/10 px-5 py-3">
                     <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-[#A78BFA]">
                       GPA / IPK
@@ -120,7 +120,7 @@ export default function Education() {
                 </div>
 
                 {/* Academic highlights */}
-                <div className="mt-6 flex flex-wrap gap-2">
+                <div className="mt-8 flex flex-wrap gap-2">
                   {item.highlights.map((highlight) => (
                     <span
                       key={highlight}
@@ -136,7 +136,7 @@ export default function Education() {
         </div>
 
         {/* Bottom statement */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-[#1F1F1F] pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-16">
+        <div className="mt-20 flex flex-col gap-5 border-t border-[#1F1F1F] pt-8 sm:flex-row sm:items-center sm:justify-between md:mt-24">
           <p className="max-w-xl text-sm leading-6 text-[#737373]">
             The degree is only the foundation. Continuous learning and
             practical projects are where the real growth happens.

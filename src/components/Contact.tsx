@@ -75,7 +75,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-10 md:py-24"
+      className="relative overflow-hidden border-t border-[#1A1A1A] px-6 py-24 md:py-32"
     >
       {/* Background atmosphere */}
       <div
@@ -116,7 +116,7 @@ export default function Contact() {
           {/* Label */}
           <motion.div
             variants={reveal}
-            className="mb-4 flex items-center gap-3"
+            className="mb-6 flex items-center gap-3"
           >
             <span className="h-px w-10 bg-[#7C3AED]" />
 
@@ -139,7 +139,7 @@ export default function Contact() {
 
           <motion.p
             variants={reveal}
-            className="mt-5 max-w-2xl text-base leading-7 text-[#737373] md:text-lg"
+            className="mt-8 max-w-2xl text-base leading-7 text-[#737373] md:text-lg"
           >
             Have an idea, opportunity, or simply want to talk about
             technology and data? My inbox is always open.
@@ -147,7 +147,7 @@ export default function Contact() {
         </motion.div>
 
         {/* Main contact area */}
-        <div className="mt-10 grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="mt-16 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
           {/* Email card */}
           <motion.a
             href="mailto:helmyakrim@gmail.com"
@@ -158,7 +158,7 @@ export default function Contact() {
             whileHover={{
               y: -5,
             }}
-            className="group relative overflow-hidden rounded-[2rem] border border-[#292929] bg-[#0D0D0D] p-6 transition-colors duration-500 hover:border-[#7C3AED]/40 md:p-8"
+            className="group relative overflow-hidden rounded-[2rem] border border-[#292929] bg-[#0D0D0D] p-7 transition-colors duration-500 hover:border-[#7C3AED]/40 md:p-10"
           >
             {/* Card glow */}
             <div className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-[#7C3AED]/0 blur-[100px] transition-all duration-700 group-hover:bg-[#7C3AED]/15" />
@@ -198,7 +198,7 @@ export default function Contact() {
             </div>
 
             {/* Email */}
-            <div className="relative mt-8">
+            <div className="relative mt-14">
               <p className="break-all font-[family-name:var(--font-space-grotesk)] text-2xl font-medium tracking-[-0.03em] text-[#F5F5F5] transition-colors duration-300 group-hover:text-[#A78BFA] md:text-4xl">
                 helmyakrim@gmail.com
               </p>
@@ -210,7 +210,7 @@ export default function Contact() {
             </div>
 
             {/* Bottom accent */}
-            <div className="relative mt-7 flex items-center gap-3">
+            <div className="relative mt-10 flex items-center gap-3">
               <div className="h-px w-10 bg-[#7C3AED] transition-all duration-500 group-hover:w-20" />
 
               <span className="text-[10px] uppercase tracking-[0.2em] text-[#525252]">
@@ -333,7 +333,7 @@ export default function Contact() {
             duration: 0.7,
             ease,
           }}
-          className="relative mt-4 overflow-hidden rounded-[2rem] border border-[#292929] bg-gradient-to-br from-[#111111] via-[#0D0D0D] to-[#120D1D] p-6 md:p-8"
+          className="relative mt-5 overflow-hidden rounded-[2rem] border border-[#292929] bg-gradient-to-br from-[#111111] via-[#0D0D0D] to-[#120D1D] p-7 md:p-10"
         >
           {/* CTA glow */}
           <div
@@ -351,7 +351,7 @@ export default function Contact() {
                 </p>
               </div>
 
-              <h3 className="mt-4 max-w-xl font-[family-name:var(--font-space-grotesk)] text-2xl font-medium leading-tight !text-[#F5F5F5] md:text-3xl">
+              <h3 className="mt-5 max-w-xl font-[family-name:var(--font-space-grotesk)] text-2xl font-medium leading-tight !text-[#F5F5F5] md:text-3xl">
                 Let&apos;s build something{" "}
                 <span className="text-[#A78BFA]">meaningful.</span>
               </h3>
@@ -364,7 +364,7 @@ export default function Contact() {
 
             <a
               href="mailto:helmyakrim@gmail.com"
-              className="group mt-5 inline-flex shrink-0 items-center gap-3 rounded-full bg-[#F5F5F5] px-6 py-3.5 text-sm font-semibold text-[#0A0A0A] transition-all duration-300 hover:bg-[#7C3AED] hover:text-white md:mt-0"
+              className="group mt-7 inline-flex shrink-0 items-center gap-3 rounded-full bg-[#F5F5F5] px-6 py-3.5 text-sm font-semibold text-[#0A0A0A] transition-all duration-300 hover:bg-[#7C3AED] hover:text-white md:mt-0"
             >
               Get in touch
 

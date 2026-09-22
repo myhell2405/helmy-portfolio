@@ -5,10 +5,12 @@ import { motion } from "motion/react";
 
 type IconName =
   | "home"
+  | "user"
   | "graduation"
   | "badge"
   | "sparkles"
   | "folder"
+  | "path"
   | "mail"
   | "file";
 
@@ -18,10 +20,12 @@ const navItems: {
   icon: IconName;
 }[] = [
   { label: "Home", href: "#home", icon: "home" },
+  { label: "About", href: "#about", icon: "user" },
   { label: "Skills", href: "#skills", icon: "sparkles" },
   { label: "Education", href: "#education", icon: "graduation" },
   { label: "Certificates", href: "#certificates", icon: "badge" },
   { label: "Projects", href: "#projects", icon: "folder" },
+  { label: "Journey", href: "#journey", icon: "path" },
   { label: "Contact", href: "#contact", icon: "mail" },
   { label: "CV", href: "/cv.pdf", icon: "file" },
 ];
@@ -30,6 +34,13 @@ function DockIcon({ name }: { name: IconName }) {
   const paths: Record<IconName, React.ReactNode> = {
     home: (
       <path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 21v-6h6v6" />
+    ),
+
+    user: (
+      <>
+        <circle cx="12" cy="8" r="3.5" />
+        <path d="M4.5 21a7.5 7.5 0 0 1 15 0" />
+      </>
     ),
 
     graduation: (
@@ -55,6 +66,14 @@ function DockIcon({ name }: { name: IconName }) {
 
     folder: (
       <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H10l2 2h6.5A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5z" />
+    ),
+
+    path: (
+      <>
+        <circle cx="6" cy="18" r="2" />
+        <circle cx="18" cy="6" r="2" />
+        <path d="M8 18h3a3 3 0 0 0 3-3v-2a3 3 0 0 1 3-3" />
+      </>
     ),
 
     mail: (
