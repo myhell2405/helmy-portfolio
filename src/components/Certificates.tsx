@@ -14,11 +14,11 @@ const certificates = [
     label: "Certificate 2",
     isSample: false,
   },
-  {
-    src: "/images/certificates/Certificate3.png",
-    label: "Sample certificate",
-    isSample: true,
-  },
+  // {
+  //   src: "/images/certificates/Certificate3.png",
+  //   label: "Sample certificate",
+  //   isSample: true,
+  // },
 ];
 
 export default function Certificates() {
