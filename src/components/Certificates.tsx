@@ -4,14 +4,26 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const certificates = [
-  "/images/certificates/Certificate1.jpg",
-  "/images/certificates/Certificate2.jpg",
+  {
+    src: "/images/certificates/Certificate1.jpg",
+    label: "Certificate 1",
+    isSample: false,
+  },
+  {
+    src: "/images/certificates/Certificate2.jpg",
+    label: "Certificate 2",
+    isSample: false,
+  },
+  {
+    src: "/images/certificates/Certificate3.png",
+    label: "Sample certificate",
+    isSample: true,
+  },
 ];
 
 export default function Certificates() {
-  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(
-    null,
-  );
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<(typeof certificates)[number] | null>(null);
 
   useEffect(() => {
     if (!selectedCertificate) return;
@@ -51,21 +63,26 @@ export default function Certificates() {
         </div>
 
         <div className="flex flex-wrap justify-center gap-3">
-          {certificates.map((src, index) => (
+          {certificates.map((certificate) => (
             <button
-              key={src}
+              key={certificate.src}
               type="button"
-              onClick={() => setSelectedCertificate(src)}
-              aria-label={`View Certificate${index + 1}`}
+              onClick={() => setSelectedCertificate(certificate)}
+              aria-label={`View ${certificate.label}`}
               className="group relative aspect-[1.414/1] w-full max-w-[560px] overflow-hidden rounded-3xl border border-[#2A2A2A] bg-[#111111] md:w-[calc(50%-0.625rem)] xl:w-[calc(33.333%-0.833rem)]"
             >
               <Image
-                src={src}
-                alt={`Certificate${index + 1}`}
+                src={certificate.src}
+                alt={certificate.label}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
+              {certificate.isSample && (
+                <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/75 px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-white">
+                  Sample
+                </span>
+              )}
             </button>
           ))}
         </div>
@@ -84,12 +101,17 @@ export default function Certificates() {
             onClick={(event) => event.stopPropagation()}
           >
             <Image
-              src={selectedCertificate}
-              alt="Selected certificate"
+              src={selectedCertificate.src}
+              alt={selectedCertificate.label}
               width={1600}
               height={1131}
               className="max-h-[82vh] w-auto max-w-full rounded-lg object-contain"
             />
+            {selectedCertificate.isSample && (
+              <p className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-black/75 px-4 py-2 text-center text-xs text-white">
+                Sample image — replace with your real certificate before publishing.
+              </p>
+            )}
             <button
               type="button"
               aria-label="Close certificate preview"
