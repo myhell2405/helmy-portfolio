@@ -320,7 +320,7 @@ export default function Hero() {
             </motion.a>
 
             <motion.a
-              href="/cv.pdf"
+              href="/CV%20Helmy%20Akrim%20S.Kom.pdf"
               target="_blank"
               rel="noreferrer"
               whileHover={{

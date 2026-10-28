@@ -12,6 +12,8 @@ type IconName =
   | "mail"
   | "file";
 
+const cvHref = "/CV%20Helmy%20Akrim%20S.Kom.pdf";
+
 const navItems: {
   label: string;
   href: string;
@@ -23,7 +25,7 @@ const navItems: {
   { label: "Certificates", href: "#certificates", icon: "badge" },
   { label: "Projects", href: "#projects", icon: "folder" },
   { label: "Contact", href: "#contact", icon: "mail" },
-  { label: "CV", href: "/cv.pdf", icon: "file" },
+  { label: "CV", href: cvHref, icon: "file" },
 ];
 
 function DockIcon({ name }: { name: IconName }) {
@@ -264,7 +266,7 @@ export default function Navbar() {
 
         {navItems.map((item, index) => {
           const isActive = activeItem === item.href;
-          const isDocument = item.href === "/cv.pdf";
+          const isDocument = item.href === cvHref;
 
           return (
             <motion.a
@@ -451,7 +453,7 @@ export default function Navbar() {
       >
         {navItems.map((item, index) => {
           const isActive = activeItem === item.href;
-          const isDocument = item.href === "/cv.pdf";
+          const isDocument = item.href === cvHref;
         
           return (
             <motion.a
@@ -570,7 +572,7 @@ export default function Navbar() {
                 id="cv-preview-title"
                 className="font-[family-name:var(--font-space-grotesk)] text-xl font-semibold text-white"
               >
-                Curriculum Vitae
+                CV Helmy Akrim S.Kom
               </h2>
               <button
                 type="button"
@@ -583,14 +585,14 @@ export default function Navbar() {
             </div>
 
             <iframe
-              src="/cv.pdf"
+              src={cvHref}
               title="Curriculum Vitae preview"
               className="h-[65vh] min-h-[420px] w-full bg-white"
             />
 
             <div className="flex justify-end border-t border-white/10 px-5 py-4 sm:px-6">
               <a
-                href="/cv.pdf"
+                href={cvHref}
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-full bg-[#7C3AED] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#6D28D9]"
