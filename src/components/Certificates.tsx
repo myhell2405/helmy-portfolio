@@ -8,17 +8,20 @@ const certificates = [
     src: "/images/certificates/Certificate1.jpg",
     label: "Certificate 1",
     isSample: false,
+    isPortrait: false,
   },
   {
     src: "/images/certificates/Certificate2.jpg",
     label: "Certificate 2",
     isSample: false,
+    isPortrait: false,
   },
-  // {
-  //   src: "/images/certificates/Certificate3.png",
-  //   label: "Sample certificate",
-  //   isSample: true,
-  // },
+  {
+    src: "/images/certificates/Certificate3.png",
+    label: "TOEFL Certificate",
+    isSample: false,
+    isPortrait: true,
+  },
 ];
 
 export default function Certificates() {
@@ -69,7 +72,7 @@ export default function Certificates() {
               type="button"
               onClick={() => setSelectedCertificate(certificate)}
               aria-label={`View ${certificate.label}`}
-              className="group relative aspect-[1.414/1] w-full max-w-[560px] overflow-hidden rounded-3xl border border-[#2A2A2A] bg-[#111111] md:w-[calc(50%-0.625rem)] xl:w-[calc(33.333%-0.833rem)]"
+              className={`group relative ${certificate.isPortrait ? "aspect-[1/1.414] max-w-[397px]" : "aspect-[1.414/1] max-w-[560px]"} w-full overflow-hidden rounded-3xl border border-[#2A2A2A] bg-[#111111] md:w-[calc(50%-0.625rem)] xl:w-[calc(33.333%-0.833rem)]`}
             >
               <Image
                 src={certificate.src}
@@ -103,8 +106,8 @@ export default function Certificates() {
             <Image
               src={selectedCertificate.src}
               alt={selectedCertificate.label}
-              width={1600}
-              height={1131}
+              width={selectedCertificate.isPortrait ? 1127 : 1600}
+              height={selectedCertificate.isPortrait ? 1600 : 1131}
               className="max-h-[82vh] w-auto max-w-full rounded-lg object-contain"
             />
             {selectedCertificate.isSample && (
