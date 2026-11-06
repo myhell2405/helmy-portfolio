@@ -1,39 +1,63 @@
 const skillGroups = [
   {
     number: "01",
-    category: "Development",
+    category: "Business Analysis",
     description:
-      "Building structured and responsive web applications from interface to database.",
+      "Translating business needs into actionable technical requirements, user stories, and streamlined workflows.",
     skills: [
-      "PHP",
-      "Laravel",
-      "JavaScript",
-      "HTML",
-      "CSS",
-      "Tailwind CSS",
-      "MySQL",
+      "Requirement Elicitation",
+      "SRS Documentation",
+      "BPMN / Flowchart",
+      "User Stories & Backlog",
+      "Agile Scrum",
+      "Stakeholder Management",
     ],
   },
   {
     number: "02",
-    category: "Data & Analytics",
+    category: "System Analysis",
     description:
-      "Working with data to uncover patterns, create insights, and support decisions.",
+      "Designing resilient software architectures, relational databases, and clear functional specifications.",
     skills: [
-      "SQL",
-      "Python",
-      "Excel",
-      "Power BI",
-      "Tableau",
-      "Statistics",
+      "UML Modeling (Use Case, Activity, Sequence)",
+      "Database Design (ERD & Normalization)",
+      "System Architecture",
+      "Functional Specifications",
+      "Software Testing & QA",
     ],
   },
   {
     number: "03",
-    category: "Tools & Workflow",
+    category: "Software Development",
     description:
-      "Tools that support development, collaboration, analysis, and product design.",
-    skills: ["Git / GitHub", "VS Code"],
+      "Building structured, scalable, and responsive applications across modern web and desktop platforms.",
+    skills: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "PHP & Laravel",
+      "Electron",
+      "Tailwind CSS",
+      "RESTful APIs",
+      "Cloudflare Workers & D1",
+      "Git / GitHub",
+    ],
+  },
+  {
+    number: "04",
+    category: "Data Analytics",
+    description:
+      "Transforming complex datasets into actionable insights, automated calculations, and interactive visualizations.",
+    skills: [
+      "Python",
+      "SQL",
+      "Pandas & NumPy",
+      "Matplotlib & Seaborn",
+      "Jupyter Notebook",
+      "Looker Studio",
+      "Excel & Spreadsheets",
+      "Exploratory Data Analysis (EDA)",
+    ],
   },
 ];
 

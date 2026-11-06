@@ -3,11 +3,62 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const projects = [
+type ProjectField =
+  | "business-analyst"
+  | "system-analyst"
+  | "software-developer"
+  | "data-analyst";
+
+interface ProjectItem {
+  number: string;
+  fields: ProjectField[];
+  type: string;
+  title: string;
+  client: string;
+  description: string;
+  technologies: string[];
+  featured: boolean;
+  githubUrl: string;
+  liveUrl?: string;
+  previewImage?: string;
+  screens: string[];
+}
+
+const filterCategories: { id: "all" | ProjectField; label: string }[] = [
+  { id: "all", label: "All Projects" },
+  { id: "business-analyst", label: "Business Analyst" },
+  { id: "system-analyst", label: "System Analyst" },
+  { id: "software-developer", label: "Software Developer" },
+  { id: "data-analyst", label: "Data Analyst" },
+];
+
+const projects: ProjectItem[] = [
   {
     number: "01",
+    fields: ["business-analyst", "system-analyst"],
+    type: "Business Analysis / System Requirements",
+    title: "SIM Ayam Geprek Razen — SRS & Agile Specification",
+    client: "Ayam Geprek Razen (HelTech)",
+    description:
+      "Software Requirements Specification (SRS) v1.0 and Agile Sprint 1 planning for a culinary Point of Sale (POS) and inventory management system, covering UML modeling, user stories, acceptance criteria, and ERD.",
+    technologies: [
+      "Business Analysis",
+      "SRS Document",
+      "Agile Scrum",
+      "UML Modeling",
+      "User Stories",
+      "ERD",
+    ],
+    featured: true,
+    githubUrl: "https://github.com/myhell2405/Razen",
+    previewImage: "/images/projects/razen-preview.png",
+    screens: ["/images/projects/razen-preview.png"],
+  },
+  {
+    number: "02",
+    fields: ["system-analyst", "software-developer"],
     type: "Academic / Information System",
-    title: "Academic Information System",
+    title: "Academic Information System (SIAKAD)",
     client: "SDN 01 Durian Gadang",
     description:
       "A web-based school information system for managing students, teachers, classes, subjects, grades, extracurricular activities, and academic reports.",
@@ -25,12 +76,54 @@ const projects = [
     ],
   },
   {
-    number: "02",
+    number: "03",
+    fields: ["system-analyst", "software-developer"],
+    type: "Enterprise System / Farm Management",
+    title: "SIM Kemitraan Peternakan Ayam",
+    client: "Internal Farm Management",
+    description:
+      "An enterprise web-based management system for poultry partnership operations, featuring role-based access control (Owner, Manajer, Operator), farm contracts, harvest weight tiers, and sapronak logistics.",
+    technologies: [
+      "Laravel",
+      "PHP",
+      "Blade",
+      "MySQL",
+      "Tailwind CSS",
+      "RBAC",
+    ],
+    featured: true,
+    githubUrl: "https://github.com/myhell2405/japfa",
+    previewImage: "/images/projects/japfa-preview.png",
+    screens: ["/images/projects/japfa-preview.png"],
+  },
+  {
+    number: "04",
+    fields: ["software-developer"],
+    type: "Modern Web Application",
+    title: "HelsTJ — Job Tracker",
+    client: "Personal Project",
+    description:
+      "A modern web-based job application tracking platform with company directories, public recommendation queue, and full admin dashboard on Cloudflare edge architecture.",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Cloudflare Workers",
+      "Cloudflare D1",
+    ],
+    featured: false,
+    githubUrl: "https://github.com/myhell2405/HelsTJ",
+    previewImage: "/images/projects/helstj-preview.png",
+    screens: ["/images/projects/helstj-preview.png"],
+  },
+  {
+    number: "05",
+    fields: ["system-analyst", "software-developer"],
     type: "Offline Desktop Application",
     title: "Kwitansi ARKAS BOS",
     client: "School BOS Budget Management",
     description:
-      "An offline-first Windows desktop tool for creating, storing, and printing school BOS budget receipts. Voucher data stays on the user's computer, so it works without MySQL or an internet connection.",
+      "An offline-first Windows desktop tool for creating, storing, and printing school BOS budget receipts. Voucher data stays on the user's computer without requiring MySQL or an internet connection.",
     technologies: ["Electron", "HTML", "CSS", "JavaScript", "JSON"],
     featured: true,
     githubUrl: "https://github.com/myhell2405/Kwitansi-ARKAS-BOS",
@@ -38,12 +131,13 @@ const projects = [
     screens: ["/images/projects/kwitansi-preview.png"],
   },
   {
-    number: "03",
+    number: "06",
+    fields: ["data-analyst"],
     type: "Data Science / Finance",
     title: "Finova — Financial Analytics",
     client: "Personal Project",
     description:
-      "An analytics project using synthetic customer, transaction, product, and revenue data. Includes data-quality checks and business analysis with SQL and Python, with results prepared for dashboard visualization.",
+      "An analytics project using synthetic customer, transaction, product, and revenue data. Includes data-quality checks, SQL & Python analysis, and dashboard visualization in Looker Studio.",
     technologies: ["Python", "SQL", "Jupyter Notebook", "Pandas", "MySQL"],
     featured: false,
     githubUrl: "https://github.com/myhell2405/finova",
@@ -51,12 +145,13 @@ const projects = [
     screens: ["/images/projects/finova-preview.png"],
   },
   {
-    number: "04",
+    number: "07",
+    fields: ["data-analyst"],
     type: "Education Data Analysis",
     title: "Gaya Belajar — Student Learning Styles",
-    client: "Academic Research",
+    client: "Academic Research (MTsN 1 Kota Padang)",
     description:
-      "An analysis of student questionnaire responses that groups learning styles into visual, auditory, and kinesthetic categories. Summarizes each student's dominant style and exports charts and results for further review.",
+      "Analysis of student questionnaire responses that groups learning styles into Visual, Auditory, and Kinesthetic categories. Summarizes each student's dominant style and exports distribution charts.",
     technologies: ["Python", "Jupyter Notebook", "Pandas", "Matplotlib"],
     featured: false,
     githubUrl: "https://github.com/myhell2405/gaya_belajar",
@@ -64,25 +159,33 @@ const projects = [
     screens: ["/images/projects/gaya-belajar-preview.png"],
   },
   {
-    number: "05",
+    number: "08",
+    fields: ["data-analyst"],
     type: "Sales Data Analysis",
-    title: "Penjualan Analisis — Sales Analysis",
+    title: "Penjualan Analisis — Retail Sales EDA",
     client: "Personal Project",
     description:
-      "A small Python analysis of daily store sales, including total sales, best-selling products, category shares, and daily sales trends, with charts produced in a Jupyter notebook.",
-    technologies: ["Python", "Jupyter Notebook", "Pandas", "Matplotlib", "Seaborn"],
+      "Exploratory data analysis of retail transactions, calculating product revenue totals, category contribution shares, and daily sales trends with Matplotlib and Seaborn.",
+    technologies: [
+      "Python",
+      "Jupyter Notebook",
+      "Pandas",
+      "Matplotlib",
+      "Seaborn",
+    ],
     featured: false,
     githubUrl: "https://github.com/myhell2405/Penjualan_analisis",
     previewImage: "/images/projects/penjualan-preview.png",
     screens: ["/images/projects/penjualan-preview.png"],
   },
   {
-    number: "06",
+    number: "09",
+    fields: ["software-developer"],
     type: "Web Development / Portfolio",
     title: "Helmy Portfolio",
     client: "Personal Project",
     description:
-      "A responsive personal portfolio built with Next.js, TypeScript, and Motion, featuring an animated introduction, project gallery, certificates, and contact information.",
+      "A responsive personal portfolio built with Next.js, TypeScript, and Motion, featuring an animated introduction, project gallery, credentials, and dual-language localization.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Motion"],
     featured: false,
     githubUrl: "https://github.com/myhell2405/helmy-portfolio",
@@ -93,9 +196,13 @@ const projects = [
 ];
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState<
-    (typeof projects)[number] | null
-  >(null);
+  const [activeFilter, setActiveFilter] = useState<"all" | ProjectField>("all");
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((p) => p.fields.includes(activeFilter as ProjectField));
 
   return (
     <section
@@ -110,7 +217,7 @@ export default function Projects() {
               <span className="h-px w-10 bg-[#7C3AED]" />
 
               <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#A1A1A1]">
-                All Public GitHub Projects
+                Portfolio Projects
               </p>
             </div>
 
@@ -124,14 +231,49 @@ export default function Projects() {
           </div>
 
           <p className="max-w-md text-sm leading-6 text-[#737373] lg:justify-self-end lg:text-right">
-            Every public project repository on my GitHub profile is listed
-            here. Private repositories are excluded.
+            Showcase of projects spanning business analysis, systems architecture,
+            software engineering, and data analytics.
           </p>
         </div>
 
-        {/* Projects */}
+        {/* Role Filter Tabs */}
+        <div className="mb-8 flex flex-wrap gap-2 md:mb-12">
+          {filterCategories.map((cat) => {
+            const count =
+              cat.id === "all"
+                ? projects.length
+                : projects.filter((p) => p.fields.includes(cat.id as ProjectField)).length;
+            const isActive = activeFilter === cat.id;
+
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveFilter(cat.id)}
+                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-medium transition-all duration-300 ${
+                  isActive
+                    ? "border-[#7C3AED] bg-[#7C3AED]/20 text-[#C4B5FD]"
+                    : "border-[#262626] bg-[#111111] text-[#A1A1A1] hover:border-[#383838] hover:text-[#F5F5F5]"
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-[10px] ${
+                    isActive
+                      ? "bg-[#7C3AED] text-white"
+                      : "bg-[#1E1E1E] text-[#737373]"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Projects List */}
         <div className="border-t border-[#1F1F1F]">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <article
               key={project.number}
               className="group border-b border-[#1F1F1F] py-7 md:py-10"
@@ -203,7 +345,7 @@ export default function Projects() {
                       <span className="transition-transform duration-300 group-hover/button:translate-x-1">→</span>
                     </button>
 
-                    {"liveUrl" in project && (
+                    {"liveUrl" in project && project.liveUrl && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
@@ -235,11 +377,10 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Bottom statement */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-[#1F1F1F] pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-16">
+        {/* Footer Note */}
+        <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-[#1F1F1F] pt-8 md:flex-row md:items-center">
           <p className="max-w-xl text-sm leading-6 text-[#737373]">
-            Explore the source code for each project on GitHub. Private
-            repositories are not shown here.
+            Explore the source code and documentation for each project on GitHub.
           </p>
 
           <a
@@ -289,7 +430,7 @@ export default function Projects() {
               </div>
 
               <div className="flex shrink-0 items-center gap-3">
-                {"liveUrl" in selectedProject && (
+                {"liveUrl" in selectedProject && selectedProject.liveUrl && (
                   <a
                     href={selectedProject.liveUrl}
                     target="_blank"
@@ -347,7 +488,7 @@ export default function Projects() {
             ) : (
               <div className="mt-8 flex min-h-48 items-center justify-center rounded-2xl border border-dashed border-[#262626] bg-[#111111]">
                 <p className="text-sm text-[#525252]">
-                  {"liveUrl" in selectedProject
+                  {"liveUrl" in selectedProject && selectedProject.liveUrl
                     ? "Open the live site to explore this project."
                     : "Case study screenshots will be added soon."}
                 </p>

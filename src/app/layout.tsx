@@ -13,9 +13,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Helmy Akrim — Portfolio",
+  title: "Helmy Akrim — Business Analyst, System Analyst, Software Developer & Data Analyst",
   description:
-    "Personal portfolio of Helmy Akrim — Information Systems, technology, and data.",
+    "Personal portfolio of Helmy Akrim, S.Kom — Business Analyst, System Analyst, Software Developer, and Data Analyst.",
 };
 
 export default function RootLayout({

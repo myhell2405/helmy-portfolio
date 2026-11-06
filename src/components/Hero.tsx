@@ -4,9 +4,10 @@ import Image from "next/image";
 import { motion } from "motion/react";
 
 const roles = [
-  "Information Systems",
-  "Web Development",
-  "Data Analytics",
+  "Business Analyst",
+  "System Analyst",
+  "Software Developer",
+  "Data Analyst",
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -235,12 +236,11 @@ export default function Hero() {
             className="mt-10 max-w-3xl md:mt-12"
           >
             <p className="font-[family-name:var(--font-space-grotesk)] text-xl font-medium leading-tight text-[#F5F5F5] md:text-3xl">
-              Information Systems × Technology × Data
+              Business Analyst × System Analyst × Software Developer × Data Analyst
             </p>
 
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#A1A1A1] md:text-lg">
-              I build digital solutions and explore the intersection of
-              technology, data, and people.
+              I analyze business processes, design scalable systems, build robust software, and uncover actionable insights from data.
             </p>
           </motion.div>
 
