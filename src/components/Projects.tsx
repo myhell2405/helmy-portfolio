@@ -69,10 +69,6 @@ const projects: ProjectItem[] = [
     screens: [
       "/images/projects/siakad/siakad1.png",
       "/images/projects/siakad/siakad2.png",
-      "/images/projects/siakad/siakad3.png",
-      "/images/projects/siakad/siakad4.png",
-      "/images/projects/siakad/siakad5.png",
-      "/images/projects/siakad/siakad6.png",
     ],
   },
   {
@@ -93,8 +89,11 @@ const projects: ProjectItem[] = [
     ],
     featured: true,
     githubUrl: "https://github.com/myhell2405/japfa",
-    previewImage: "/images/projects/japfa-preview.png",
-    screens: ["/images/projects/japfa-preview.png"],
+    previewImage: "/images/projects/japfa1.png",
+    screens: [
+      "/images/projects/japfa1.png",
+      "/images/projects/japfa2.png",
+    ],
   },
   {
     number: "04",
@@ -113,8 +112,11 @@ const projects: ProjectItem[] = [
     ],
     featured: false,
     githubUrl: "https://github.com/myhell2405/HelsTJ",
-    previewImage: "/images/projects/helstj-preview.png",
-    screens: ["/images/projects/helstj-preview.png"],
+    previewImage: "/images/projects/helstj.png",
+    screens: [
+      "/images/projects/helstj.png",
+      "/images/projects/helstj1.png",
+    ],
   },
   {
     number: "05",
@@ -127,8 +129,8 @@ const projects: ProjectItem[] = [
     technologies: ["Electron", "HTML", "CSS", "JavaScript", "JSON"],
     featured: true,
     githubUrl: "https://github.com/myhell2405/Kwitansi-ARKAS-BOS",
-    previewImage: "/images/projects/kwitansi-preview.png",
-    screens: ["/images/projects/kwitansi-preview.png"],
+    previewImage: "/images/projects/kwitansi.png",
+    screens: ["/images/projects/kwitansi.png"],
   },
   {
     number: "06",
